@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/darrentmorgan/hostaway-cli/blob/main/SECURITY.md
+    about: Report it privately. Do not open an issue — an issue here is public.
+  - name: Contributing, the toolchain and the test seams
+    url: https://github.com/darrentmorgan/hostaway-cli/blob/main/CONTRIBUTING.md
+    about: How to run the checks, where tests go, and how to opt in to the live tests.

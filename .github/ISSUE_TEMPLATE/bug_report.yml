@@ -1,0 +1,90 @@
+name: Bug report
+description: Something hsctl or HostawaySession did that it should not have.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before you start: if this is a **security** problem, close this form and read
+        [SECURITY.md](https://github.com/darrentmorgan/hostaway-cli/blob/main/SECURITY.md) instead. A vulnerability filed here is a
+        vulnerability published.
+
+        Everything you paste below is public. Replace your account ID, your secret, your
+        listing IDs and any guest's details with invented ones — the maintainers can
+        reproduce a bug from `1001` and `424242` just as well as from yours.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened, and what did you expect instead?
+      placeholder: |
+        hsctl set 1001 --max-guests 8 --apply printed "stored" for a field the
+        listing did not carry afterwards.
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: The command, and everything it printed
+      description: >
+        The whole run, including the surface banner and the exit code
+        (`echo $?`). Scrubbed of real IDs and secrets.
+      render: shell
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Which surface was it on?
+      description: The banner says. If you can reproduce it on a sandbox, say so — it makes the bug much easier to fix.
+      options:
+        - LIVE
+        - SANDBOX (the demo server or another stand-in)
+        - Both
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: How far did the write get?
+      options:
+        - It was a read, not a write
+        - Dry run — nothing was sent
+        - Applied, and the read-back looked right
+        - Applied, and the read-back reported a dropped field
+        - Applied, and the export failed afterwards
+    validations:
+      required: true
+
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: The output of `hsctl version` and `uv run python -V`, plus your operating system.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: doctor
+    attributes:
+      label: hsctl doctor
+      description: >
+        Optional, and often decisive. Delete the account ID from the credentials and
+        token-cache lines before you paste it — the rest is what matters.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scrubbed
+    attributes:
+      label: Before you file it
+      options:
+        - label: Nothing above carries a real account ID, secret, listing, guest or property name.
+          required: true
+        - label: I can reproduce this on the current `main`, or I have said which version I am on.
+          required: true

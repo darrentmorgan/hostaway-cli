@@ -1,0 +1,37 @@
+# Worktrees live inside the repo
+.claude/worktrees/
+
+# Environments and secrets
+.venv/
+.env
+.env.*
+!.env.example
+
+# Python caches and build output
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+.coverage.*
+
+# Demo recordings
+scripts/demo/out/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+
+# Private scrub denylist (real identifiers; never commit)
+tests/scrub_denylist.local.txt
+
+# Agent and tooling state
+.claude/
+.codex/
+.omc/

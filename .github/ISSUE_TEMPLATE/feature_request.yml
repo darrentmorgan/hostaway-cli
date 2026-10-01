@@ -1,0 +1,52 @@
+name: Feature request
+description: Something an operator cannot do yet, or can only do awkwardly.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Start with the operating problem rather than the design. What you are trying to do
+        on your account is the part nobody else can supply.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do, and what stops you?
+      description: What you do today instead — the Hostaway UI, a script, three commands in a row — is useful here.
+    validations:
+      required: true
+
+  - type: textarea
+    id: shape
+    attributes:
+      label: What would it look like?
+      description: A command line you would like to be able to type, if you have one in mind.
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: writes
+    attributes:
+      label: Does it write to Hostaway?
+      description: >
+        A write arrives with a dry run, the two flags and a read-back, and a change that
+        moves money or bookings is a protected field. Saying which it is up front settles
+        most of the design.
+      options:
+        - No — it reads, or it works offline
+        - Yes, and nothing it changes is a protected field
+        - Yes, and it changes a protected field (price, fees, deposit, availability, deletion)
+        - I am not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else
+      description: >
+        How many listings, how often, whether the listing is channel-connected. Invented
+        IDs and property names only, please.
+    validations:
+      required: false

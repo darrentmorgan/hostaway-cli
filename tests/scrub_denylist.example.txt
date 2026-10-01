@@ -1,0 +1,19 @@
+# Generic patterns that must never appear in a tracked file. Committed.
+# test_scrub.py always applies this file.
+#
+# For real identifiers (account, listing and reservation ids, property names, emails,
+# coordinates, internal hostnames) keep a PRIVATE denylist outside the repo and point
+# HSCTL_SCRUB_DENYLIST at it, or save it as tests/scrub_denylist.local.txt (git-ignored).
+# Without one, the real-identifier test is skipped.
+#
+# Format: one entry per line; blank lines and lines starting with # are ignored.
+#   plain entry   case-insensitive substring match
+#   word:ENTRY    whole-word, case-sensitive match (for short or common tokens)
+#   re:PATTERN    case-insensitive regular expression, matched within a single line
+
+# Local home-directory paths
+/Users/
+# Password-manager references
+op://
+# Secret-looking assignments
+re:(api[_-]?key|client[_-]?secret)["']?\s*[:=]\s*["'][A-Za-z0-9]{16,}

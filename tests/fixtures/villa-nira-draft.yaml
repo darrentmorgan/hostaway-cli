@@ -1,0 +1,111 @@
+# A listing draft for an invented villa. Nothing here is real: the property, the
+# address, the coordinates, the prices and the network name are all made up, and the
+# prose is hard-wrapped on purpose so the builders' unwrapping is exercised.
+property_name: Nira
+portfolio: DEMO
+
+title: Villa Nira — clifftop pool villa
+summary: |
+  Villa Nira stands on the clifftop above the bay, four bedrooms wrapped around
+  a long infinity pool.
+
+the_space: |
+  🛏️ SLEEPING
+  Bedroom one opens straight onto the pool deck and has its own ensuite, an
+  outdoor shower and a view down the cliff.
+
+inventory_by_room: |
+  Bedroom one: king bed, ensuite, pool access
+  Bedroom two: king bed, ensuite
+
+access: |
+  1. The gate code is in your arrival message, and the keypad sits on the left
+  as you face the gate.
+  2. The house key hangs in the lockbox by the front door.
+
+interaction: |
+  The host lives ten minutes away and answers messages all day; nobody will call
+  in unless you ask.
+
+neighbourhood: |
+  A quiet lane of family compounds, with the surf break and two warungs a short
+  walk downhill.
+
+transit: |
+  The airport is fifty minutes by car outside peak hours, and we can arrange the
+  pickup for you.
+
+other_things_to_note: |
+  The cliff path is unlit after dark, so bring a torch or use the stairs by the
+  pool instead.
+
+max_guests: 8
+min_stay: 2
+max_stay: 90
+room_type: entire_home
+property_type: Villa
+cancellation_policy: moderate
+weekly_discount: 0.9
+monthly_discount: 0.8
+instant_bookable: true
+bathroom_count: 4
+square_meters: 320
+wifi_ssid: NIRA-GUEST
+
+bed_config:
+  - room_id: bedroom_1
+    bed_type: king
+    quantity: 1
+  - room_id: bedroom_2
+    bed_type: king
+    quantity: 1
+  - room_id: bedroom_3
+    bed_type: twin
+    quantity: 2
+
+amenities_by_room:
+  pool_deck:
+    - Sun loungers
+    - Outdoor shower
+
+hostaway_amenities:
+  - Wifi
+  - Air conditioning
+  - Private pool
+  - Pool towels
+
+# The listing custom field this account publishes for address.google_map_link.
+# Omit it and the link is simply not written.
+map_link_custom_field: Google map link
+
+house_rules:
+  no_parties: No parties or events
+  quiet_hours: "10:00 PM to 7:00 AM"
+
+fees:
+  cleaning_fee: 45
+  security_deposit: 200
+  extra_guest_after: 6
+  extra_guest_fee: 25
+
+check_in:
+  earliest: "14:00"
+  latest: "22:00"
+  check_out: "11:00"
+
+pricing:
+  base_price: 410
+  currency: usd
+  floor_price: 350
+
+address:
+  country: Indonesia
+  country_code: id
+  state: Example Province
+  city: Example Bay
+  street: Jl. Contoh No. 12, Example Bay, Example Province 80999
+  zip: "80999"
+  lat: -8.1234
+  lng: 115.4321
+  timezone: Asia/Makassar
+  google_map_link: https://maps.example.com/villa-nira

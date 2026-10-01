@@ -1,0 +1,81 @@
+# hsctl configuration — one Hostaway account's house defaults, fill-only-if-empty
+# fields and channel markups.
+#
+#   cp config.example.yaml ~/.config/hsctl/config.yaml
+#   export HSCTL_CONFIG=~/.config/hsctl/config.yaml
+#
+# Every value below is invented and is there to show the shape. Read your own
+# values off your own account before you create or backfill anything: hsctl holds
+# none of your account's values and will not guess (docs/adr/0002).
+
+# Values hsctl applies to every listing it creates or backfills. Keys are Hostaway
+# wire field names exactly as the API spells them; values are a string, a number or
+# true/false. Anything your account does not use, delete.
+#
+# hsctl guesses only bedType (real_bed), used where neither your draft nor this file
+# names it. roomType and maxNights are sent only if your draft (room_type, max_stay)
+# or this file names them.
+house_defaults:
+  # Listing language as Hostaway's two-letter code.
+  language: en
+  # Accept a booking that starts today: 1 yes, 0 no. Commented out so copying this
+  # file does not apply it silently; enable it if it matches your operation.
+  # allowSameDayBooking: 1
+  # Latest hour of the day (0-23) a same-day booking is still taken.
+  sameDayBookingLeadTime: 12
+  # Your default cancellation policy, by catalog id. Run `hsctl amenities`-style
+  # catalog reads against your own account to find yours; these numbers are made up.
+  cancellationPolicyId: 2001
+  # Cancellation policy id used for the Airbnb channel.
+  airbnbCancellationPolicyId: 2002
+  # Cancellation policy id used for the Booking.com channel.
+  bookingCancellationPolicyId: 2003
+  # Cancellation policy id used for the Vrbo/HomeAway channel.
+  vrboCancellationPolicyId: 2004
+  # Cancellation policy id used for the Marriott channel.
+  marriottCancellationPolicyId: 2005
+  # How many days ahead an Airbnb booking must be made.
+  airbnbBookingLeadTime: 5
+  # Allow an Airbnb request-to-book inside that lead time: 1 yes, 0 no.
+  airbnbBookingLeadTimeAllowRequestToBook: 1
+  # Property contact block, shown to guests and to channels. The per-listing phone
+  # number is deliberately absent: put it on a custom field, not on every listing.
+  # First name of the contact.
+  contactName: Guest
+  # Surname, or the team name that answers.
+  contactSurName: Services
+  # Contact mailbox. Use a shared one, not a person's.
+  contactEmail: stays@example.com
+  # Language that contact answers in, spelled as Hostaway spells it.
+  contactLanguage: English
+  # Contact address, as much of it as you want a guest to see.
+  contactAddress: Example City
+
+# Optional template for internalListingName, e.g. "{portfolio}-{property_slug}".
+# Fields: {portfolio} (draft key), {property_name} (as written), {property_slug}
+# (upper case, hyphenated). Omit it and the internal name is just the property name.
+# listing_name_template: "{portfolio}-{property_slug}"
+
+# House defaults written only where the listing has no value yet, so an operator's
+# deliberate edit is never overwritten by a backfill. Every name here must also be a
+# key under house_defaults. Creating a listing is unaffected — a new listing has
+# nothing to overwrite.
+fill_only_if_empty:
+  - contactName
+  - contactSurName
+  - contactEmail
+  - contactLanguage
+  - contactAddress
+
+# Commented out so copying this file does not apply these multipliers silently.
+# Per-channel price multipliers over the listing's own price. Money-adjacent: hsctl
+# sends them only when a command asks for them, and prints them as such. Omit a
+# channel to leave its markup alone. Known channels: airbnb, booking_engine,
+# homeaway, marriott.
+# markups:
+#  # Multiplier applied when the listing is pushed to Airbnb.
+#  airbnb: 1.2
+#  # Multiplier applied on your own Hostaway booking engine.
+#  booking_engine: 1.05
+#  # Multiplier applied when the listing is pushed to Vrbo/HomeAway.
+#  homeaway: 1.2

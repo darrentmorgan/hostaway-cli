@@ -1,0 +1,92 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hostaway-cli"
+version = "0.1.0.dev0"
+description = "Terminal and Python client for operating one Hostaway account safely."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.0.0",
+    "tenacity>=9.0.0",
+    "aiolimiter>=1.2.0",
+    "typer>=0.12.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+hsctl = "hostaway_cli.cli:app"
+
+[project.urls]
+Repository = "https://github.com/darrentmorgan/hostaway-cli"
+Issues = "https://github.com/darrentmorgan/hostaway-cli/issues"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "respx>=0.21.0",
+    "ruff>=0.6.0",
+    "mypy>=1.11.0",
+    "types-PyYAML>=6.0.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hostaway_cli"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts/demo"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "SIM", # flake8-simplify
+    "PT",  # flake8-pytest-style
+    "RUF", # ruff-specific rules
+]
+ignore = [
+    "B008", # typer declares option defaults through function calls
+]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "tests", "scripts/demo"]
+mypy_path = "tests:scripts/demo"
+strict = true
+warn_unreachable = true
+pretty = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+# The demo kit is a runnable script, not part of the package; its smoke test
+# imports it from here.
+pythonpath = ["scripts/demo"]
+addopts = "-ra --strict-markers"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
